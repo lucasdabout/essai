@@ -37,6 +37,7 @@
 
 # Web related
 
+
 # Symbolication related
 app.*.symbols
 
