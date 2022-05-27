@@ -19,9 +19,6 @@ abstract class Race2Record implements Built<Race2Record, Race2RecordBuilder> {
   String get prerequis;
 
   @nullable
-  DocumentReference get espece;
-
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -55,12 +52,10 @@ Map<String, dynamic> createRace2RecordData({
   String libelle,
   String descriptif,
   String prerequis,
-  DocumentReference espece,
 }) =>
     serializers.toFirestore(
         Race2Record.serializer,
         Race2Record((r) => r
           ..libelle = libelle
           ..descriptif = descriptif
-          ..prerequis = prerequis
-          ..espece = espece));
+          ..prerequis = prerequis));

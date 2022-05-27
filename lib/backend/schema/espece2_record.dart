@@ -17,12 +17,16 @@ abstract class Espece2Record
   int get frais;
 
   @nullable
+  BuiltList<DocumentReference> get animals;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(Espece2RecordBuilder builder) => builder
     ..libelle = ''
-    ..frais = 0;
+    ..frais = 0
+    ..animals = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('espece2');
@@ -53,4 +57,5 @@ Map<String, dynamic> createEspece2RecordData({
         Espece2Record.serializer,
         Espece2Record((e) => e
           ..libelle = libelle
-          ..frais = frais));
+          ..frais = frais
+          ..animals = null));

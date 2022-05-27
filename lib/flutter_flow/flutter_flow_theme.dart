@@ -21,6 +21,17 @@ abstract class FlutterFlowTheme {
   Color grayDark;
   Color grayLines;
   Color white;
+  Color primaryBtnText;
+  Color lineColor;
+  Color btnText;
+  Color customColor3;
+  Color customColor4;
+  Color grayIcon;
+  Color gray200;
+  Color gray600;
+  Color black600;
+  Color tertiary400;
+  Color textColor;
 
   TextStyle get title1 => GoogleFonts.getFont(
         'Overpass',
@@ -70,11 +81,11 @@ class LightModeTheme extends FlutterFlowTheme {
   Color primaryColor = const Color(0xFFEE8B60);
   Color secondaryColor = const Color(0xFF262D34);
   Color tertiaryColor = const Color(0xFF39D2C0);
-  Color alternate = const Color(0x00000000);
-  Color primaryBackground = const Color(0x00000000);
-  Color secondaryBackground = const Color(0x00000000);
-  Color primaryText = const Color(0x00000000);
-  Color secondaryText = const Color(0x00000000);
+  Color alternate = const Color(0xFFF1F4F8);
+  Color primaryBackground = const Color(0xFFF1F4F8);
+  Color secondaryBackground = const Color(0xFFFFFFFF);
+  Color primaryText = const Color(0xFF1D2429);
+  Color secondaryText = const Color(0xFF57636C);
 
   Color background = Color(0xFFF1F4F8);
   Color darkBackground = Color(0xFF111417);
@@ -82,6 +93,17 @@ class LightModeTheme extends FlutterFlowTheme {
   Color grayDark = Color(0xFF57636C);
   Color grayLines = Color(0xFFDBE2E7);
   Color white = Color(0xFFFFFFFF);
+  Color primaryBtnText = Color(0xFFFFFFFF);
+  Color lineColor = Color(0xFFE0E3E7);
+  Color btnText = Color(0xFFFFFFFF);
+  Color customColor3 = Color(0xFFDF3F3F);
+  Color customColor4 = Color(0xFF090F13);
+  Color grayIcon = Color(0xFF95A1AC);
+  Color gray200 = Color(0xFFDBE2E7);
+  Color gray600 = Color(0xFF262D34);
+  Color black600 = Color(0xFF090F13);
+  Color tertiary400 = Color(0xFF39D2C0);
+  Color textColor = Color(0xFF1E2429);
 }
 
 extension TextStyleHelper on TextStyle {

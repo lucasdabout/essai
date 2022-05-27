@@ -3,12 +3,7 @@ import 'package:built_value/standard_json_plugin.dart';
 import 'users_record.dart';
 import 'animal_record.dart';
 import 'refuge_record.dart';
-import 'caracteristique_record.dart';
-import 'jour_semaine_record.dart';
-import 'plage_record.dart';
-import 'caracteristique_espece_record.dart';
 import 'horaire_record.dart';
-import 'caracteristique_race_record.dart';
 import 'race2_record.dart';
 import 'espece2_record.dart';
 
@@ -25,12 +20,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   UsersRecord,
   AnimalRecord,
   RefugeRecord,
-  CaracteristiqueRecord,
-  JourSemaineRecord,
-  PlageRecord,
-  CaracteristiqueEspeceRecord,
   HoraireRecord,
-  CaracteristiqueRaceRecord,
   Race2Record,
   Espece2Record,
 ])

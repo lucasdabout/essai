@@ -80,8 +80,8 @@ class _MyAppState extends State<MyApp> {
               child: SizedBox(
                 width: 40,
                 height: 40,
-                child: SpinKitPumpingHeart(
-                  color: FlutterFlowTheme.of(context).primaryColor,
+                child: SpinKitWanderingCubes(
+                  color: Color(0xFFFF395C),
                   size: 40,
                 ),
               ),
@@ -115,8 +115,8 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'homePage': HomePageWidget(),
       'profilePage': ProfilePageWidget(),
+      'homePage': HomePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -127,22 +127,10 @@ class _NavBarPageState extends State<NavBarPage> {
         backgroundColor: FlutterFlowTheme.of(context).darkBackground,
         selectedItemColor: Colors.white,
         unselectedItemColor: FlutterFlowTheme.of(context).grayLines,
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 24,
-            ),
-            activeIcon: Icon(
-              Icons.home_rounded,
-              size: 24,
-            ),
-            label: ' Home',
-            tooltip: '',
-          ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.account_circle_outlined,
@@ -153,6 +141,18 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Profile',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 24,
+            ),
+            activeIcon: Icon(
+              Icons.home_rounded,
+              size: 24,
+            ),
+            label: ' Home',
             tooltip: '',
           )
         ],

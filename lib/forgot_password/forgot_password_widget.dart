@@ -28,7 +28,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).background,
+        backgroundColor: Color(0xFFFF395C),
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
@@ -36,13 +36,16 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
           },
           child: Icon(
             Icons.chevron_left_rounded,
-            color: FlutterFlowTheme.of(context).grayLines,
+            color: FlutterFlowTheme.of(context).white,
             size: 32,
           ),
         ),
         title: Text(
           'Pas de panique !',
-          style: FlutterFlowTheme.of(context).title3,
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'Overpass',
+                color: FlutterFlowTheme.of(context).white,
+              ),
         ),
         actions: [],
         centerTitle: false,
@@ -53,7 +56,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).grayLines,
+          color: FlutterFlowTheme.of(context).white,
         ),
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
@@ -88,7 +91,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                     hintText: 'Entrer votre adresse mail...',
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Overpass',
-                          color: Color(0x98FFFFFF),
+                          color: FlutterFlowTheme.of(context).grayDark,
                         ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -104,14 +107,12 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    filled: true,
-                    fillColor: FlutterFlowTheme.of(context).background,
                     contentPadding:
                         EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                   ),
                   style: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Overpass',
-                        color: FlutterFlowTheme.of(context).darkBackground,
+                        color: FlutterFlowTheme.of(context).grayDark,
                       ),
                 ),
               ),
@@ -138,7 +139,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   options: FFButtonOptions(
                     width: 250,
                     height: 60,
-                    color: FlutterFlowTheme.of(context).primaryColor,
+                    color: Color(0xFFFF395C),
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily: 'Overpass',
                           color: FlutterFlowTheme.of(context).iconGray,

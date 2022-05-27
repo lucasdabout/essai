@@ -32,6 +32,9 @@ abstract class RefugeRecord
   String get description;
 
   @nullable
+  BuiltList<DocumentReference> get animals;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -42,7 +45,8 @@ abstract class RefugeRecord
     ..codePostal = ''
     ..ville = ''
     ..tel = ''
-    ..description = '';
+    ..description = ''
+    ..animals = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('refuge');
@@ -65,6 +69,8 @@ abstract class RefugeRecord
           ..ville = snapshot.data['ville']
           ..tel = snapshot.data['tel']
           ..description = snapshot.data['description']
+          ..animals = safeGet(
+              () => ListBuilder(snapshot.data['animals'].map((s) => toRef(s))))
           ..reference = RefugeRecord.collection.doc(snapshot.objectID),
       );
 
@@ -111,4 +117,5 @@ Map<String, dynamic> createRefugeRecordData({
           ..codePostal = codePostal
           ..ville = ville
           ..tel = tel
-          ..description = description));
+          ..description = description
+          ..animals = null));

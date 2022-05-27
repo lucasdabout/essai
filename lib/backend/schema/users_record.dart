@@ -31,15 +31,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   DateTime get createdTime;
 
   @nullable
-  String get nom;
-
-  @nullable
-  String get prenom;
-
-  @nullable
-  DateTime get dateNaissance;
-
-  @nullable
   String get numeroEtRue;
 
   @nullable
@@ -49,11 +40,14 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get ville;
 
   @nullable
-  String get tel;
-
-  @nullable
   @BuiltValueField(wireName: 'phone_number')
   String get phoneNumber;
+
+  @nullable
+  String get username;
+
+  @nullable
+  BuiltList<DocumentReference> get favoris;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -65,13 +59,12 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..password = ''
     ..uid = ''
     ..photoUrl = ''
-    ..nom = ''
-    ..prenom = ''
     ..numeroEtRue = ''
     ..codePostal = ''
     ..ville = ''
-    ..tel = ''
-    ..phoneNumber = '';
+    ..phoneNumber = ''
+    ..username = ''
+    ..favoris = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -101,14 +94,11 @@ Map<String, dynamic> createUsersRecordData({
   String uid,
   String photoUrl,
   DateTime createdTime,
-  String nom,
-  String prenom,
-  DateTime dateNaissance,
   String numeroEtRue,
   String codePostal,
   String ville,
-  String tel,
   String phoneNumber,
+  String username,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
@@ -119,11 +109,9 @@ Map<String, dynamic> createUsersRecordData({
           ..uid = uid
           ..photoUrl = photoUrl
           ..createdTime = createdTime
-          ..nom = nom
-          ..prenom = prenom
-          ..dateNaissance = dateNaissance
           ..numeroEtRue = numeroEtRue
           ..codePostal = codePostal
           ..ville = ville
-          ..tel = tel
-          ..phoneNumber = phoneNumber));
+          ..phoneNumber = phoneNumber
+          ..username = username
+          ..favoris = null));

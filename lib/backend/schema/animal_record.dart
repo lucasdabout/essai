@@ -15,9 +15,6 @@ abstract class AnimalRecord
   String get imageUrl;
 
   @nullable
-  DocumentReference get refuge;
-
-  @nullable
   String get nom;
 
   @nullable
@@ -36,16 +33,13 @@ abstract class AnimalRecord
   bool get sos;
 
   @nullable
-  bool get adopte;
-
-  @nullable
   int get frais;
 
   @nullable
-  DocumentReference get race;
+  String get libelleEspece;
 
   @nullable
-  DocumentReference get espece;
+  DocumentReference get refugeanimal;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -58,8 +52,8 @@ abstract class AnimalRecord
     ..description = ''
     ..couleur = ''
     ..sos = false
-    ..adopte = false
-    ..frais = 0;
+    ..frais = 0
+    ..libelleEspece = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('animal');
@@ -84,30 +78,26 @@ abstract class AnimalRecord
 
 Map<String, dynamic> createAnimalRecordData({
   String imageUrl,
-  DocumentReference refuge,
   String nom,
   DateTime dateNaissance,
   String sexe,
   String description,
   String couleur,
   bool sos,
-  bool adopte,
   int frais,
-  DocumentReference race,
-  DocumentReference espece,
+  String libelleEspece,
+  DocumentReference refugeanimal,
 }) =>
     serializers.toFirestore(
         AnimalRecord.serializer,
         AnimalRecord((a) => a
           ..imageUrl = imageUrl
-          ..refuge = refuge
           ..nom = nom
           ..dateNaissance = dateNaissance
           ..sexe = sexe
           ..description = description
           ..couleur = couleur
           ..sos = sos
-          ..adopte = adopte
           ..frais = frais
-          ..race = race
-          ..espece = espece));
+          ..libelleEspece = libelleEspece
+          ..refugeanimal = refugeanimal));

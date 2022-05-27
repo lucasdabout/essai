@@ -7,12 +7,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/users_record.dart';
 import 'schema/animal_record.dart';
 import 'schema/refuge_record.dart';
-import 'schema/caracteristique_record.dart';
-import 'schema/jour_semaine_record.dart';
-import 'schema/plage_record.dart';
-import 'schema/caracteristique_espece_record.dart';
 import 'schema/horaire_record.dart';
-import 'schema/caracteristique_race_record.dart';
 import 'schema/race2_record.dart';
 import 'schema/espece2_record.dart';
 import 'schema/serializers.dart';
@@ -25,12 +20,7 @@ export 'schema/serializers.dart';
 export 'schema/users_record.dart';
 export 'schema/animal_record.dart';
 export 'schema/refuge_record.dart';
-export 'schema/caracteristique_record.dart';
-export 'schema/jour_semaine_record.dart';
-export 'schema/plage_record.dart';
-export 'schema/caracteristique_espece_record.dart';
 export 'schema/horaire_record.dart';
-export 'schema/caracteristique_race_record.dart';
 export 'schema/race2_record.dart';
 export 'schema/espece2_record.dart';
 
@@ -160,175 +150,6 @@ Future<FFFirestorePage<RefugeRecord>> queryRefugeRecordPage({
       isStream: isStream,
     );
 
-/// Functions to query CaracteristiqueRecords (as a Stream and as a Future).
-Stream<List<CaracteristiqueRecord>> queryCaracteristiqueRecord({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      CaracteristiqueRecord.collection,
-      CaracteristiqueRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<CaracteristiqueRecord>> queryCaracteristiqueRecordOnce({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      CaracteristiqueRecord.collection,
-      CaracteristiqueRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<CaracteristiqueRecord>> queryCaracteristiqueRecordPage({
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-    queryCollectionPage(
-      CaracteristiqueRecord.collection,
-      CaracteristiqueRecord.serializer,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    );
-
-/// Functions to query JourSemaineRecords (as a Stream and as a Future).
-Stream<List<JourSemaineRecord>> queryJourSemaineRecord({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      JourSemaineRecord.collection,
-      JourSemaineRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<JourSemaineRecord>> queryJourSemaineRecordOnce({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      JourSemaineRecord.collection,
-      JourSemaineRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<JourSemaineRecord>> queryJourSemaineRecordPage({
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-    queryCollectionPage(
-      JourSemaineRecord.collection,
-      JourSemaineRecord.serializer,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    );
-
-/// Functions to query PlageRecords (as a Stream and as a Future).
-Stream<List<PlageRecord>> queryPlageRecord({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      PlageRecord.collection,
-      PlageRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<PlageRecord>> queryPlageRecordOnce({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      PlageRecord.collection,
-      PlageRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<PlageRecord>> queryPlageRecordPage({
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-    queryCollectionPage(
-      PlageRecord.collection,
-      PlageRecord.serializer,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    );
-
-/// Functions to query CaracteristiqueEspeceRecords (as a Stream and as a Future).
-Stream<List<CaracteristiqueEspeceRecord>> queryCaracteristiqueEspeceRecord({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      CaracteristiqueEspeceRecord.collection,
-      CaracteristiqueEspeceRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<CaracteristiqueEspeceRecord>> queryCaracteristiqueEspeceRecordOnce({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      CaracteristiqueEspeceRecord.collection,
-      CaracteristiqueEspeceRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<CaracteristiqueEspeceRecord>>
-    queryCaracteristiqueEspeceRecordPage({
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-        queryCollectionPage(
-          CaracteristiqueEspeceRecord.collection,
-          CaracteristiqueEspeceRecord.serializer,
-          queryBuilder: queryBuilder,
-          nextPageMarker: nextPageMarker,
-          pageSize: pageSize,
-          isStream: isStream,
-        );
-
 /// Functions to query HoraireRecords (as a Stream and as a Future).
 Stream<List<HoraireRecord>> queryHoraireRecord({
   Query Function(Query) queryBuilder,
@@ -370,49 +191,6 @@ Future<FFFirestorePage<HoraireRecord>> queryHoraireRecordPage({
       pageSize: pageSize,
       isStream: isStream,
     );
-
-/// Functions to query CaracteristiqueRaceRecords (as a Stream and as a Future).
-Stream<List<CaracteristiqueRaceRecord>> queryCaracteristiqueRaceRecord({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      CaracteristiqueRaceRecord.collection,
-      CaracteristiqueRaceRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<CaracteristiqueRaceRecord>> queryCaracteristiqueRaceRecordOnce({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      CaracteristiqueRaceRecord.collection,
-      CaracteristiqueRaceRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<CaracteristiqueRaceRecord>>
-    queryCaracteristiqueRaceRecordPage({
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-        queryCollectionPage(
-          CaracteristiqueRaceRecord.collection,
-          CaracteristiqueRaceRecord.serializer,
-          queryBuilder: queryBuilder,
-          nextPageMarker: nextPageMarker,
-          pageSize: pageSize,
-          isStream: isStream,
-        );
 
 /// Functions to query Race2Records (as a Stream and as a Future).
 Stream<List<Race2Record>> queryRace2Record({
