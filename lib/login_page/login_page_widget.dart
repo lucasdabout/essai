@@ -67,14 +67,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              'Bienvenue',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Overpass',
-                                    fontSize: 20,
-                                  ),
+                            Image.asset(
+                              'assets/images/Animalerie_(1).png',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
                             ),
                           ],
                         ),

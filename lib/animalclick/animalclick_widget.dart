@@ -9,12 +9,10 @@ import 'package:google_fonts/google_fonts.dart';
 class AnimalclickWidget extends StatefulWidget {
   const AnimalclickWidget({
     Key key,
-    this.animalDetails,
-    this.nomrefugeanimal,
+    this.detailanimaux,
   }) : super(key: key);
 
-  final DocumentReference animalDetails;
-  final DocumentReference nomrefugeanimal;
+  final DocumentReference detailanimaux;
 
   @override
   _AnimalclickWidgetState createState() => _AnimalclickWidgetState();
@@ -26,7 +24,7 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<AnimalRecord>(
-      stream: AnimalRecord.getDocument(widget.animalDetails),
+      stream: AnimalRecord.getDocument(widget.detailanimaux),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -92,9 +90,29 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
                           style: FlutterFlowTheme.of(context).title2,
                         ),
                       ),
-                      Text(
-                        'refuge name',
-                        style: FlutterFlowTheme.of(context).bodyText1,
+                      StreamBuilder<RefugeRecord>(
+                        stream: RefugeRecord.getDocument(
+                            animalclickAnimalRecord.refugeanimal),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 40,
+                                height: 40,
+                                child: SpinKitWanderingCubes(
+                                  color: Color(0xFFFF395C),
+                                  size: 40,
+                                ),
+                              ),
+                            );
+                          }
+                          final textRefugeRecord = snapshot.data;
+                          return Text(
+                            textRefugeRecord.nom,
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          );
+                        },
                       ),
                     ],
                   ),

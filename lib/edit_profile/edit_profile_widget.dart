@@ -104,7 +104,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           shape: BoxShape.circle,
                         ),
                         child: CachedNetworkImage(
-                          imageUrl: uploadedFileUrl,
+                          imageUrl: valueOrDefault<String>(
+                            editProfileUsersRecord.photoUrl,
+                            'n-a',
+                          ),
                         ),
                       ),
                     ),

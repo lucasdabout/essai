@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -113,8 +114,13 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                           color: Color(0xFF009FFF),
                           size: 30,
                         ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
+                        onPressed: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditProfileWidget(),
+                            ),
+                          );
                         },
                       ),
                     ],
@@ -132,25 +138,48 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: GridView(
-                          padding: EdgeInsets.zero,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 1,
-                          ),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          children: [
-                            Image.network(
-                              'https://picsum.photos/seed/944/600',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                          ],
+                        child: StreamBuilder<List<AnimalRecord>>(
+                          stream: queryAnimalRecord(),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 40,
+                                  height: 40,
+                                  child: SpinKitWanderingCubes(
+                                    color: Color(0xFFFF395C),
+                                    size: 40,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<AnimalRecord> gridViewAnimalRecordList =
+                                snapshot.data;
+                            return GridView.builder(
+                              padding: EdgeInsets.zero,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                childAspectRatio: 1,
+                              ),
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: gridViewAnimalRecordList.length,
+                              itemBuilder: (context, gridViewIndex) {
+                                final gridViewAnimalRecord =
+                                    gridViewAnimalRecordList[gridViewIndex];
+                                return Image.network(
+                                  gridViewAnimalRecord.imageUrl,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                );
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],

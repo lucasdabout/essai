@@ -1,10 +1,11 @@
-import '../ajout_animal/ajout_animal_widget.dart';
+import '../animalclick/animalclick_widget.dart';
 import '../backend/backend.dart';
 import '../chat/chat_widget.dart';
 import '../chiens/chiens_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../infosadoption/infosadoption_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -137,7 +138,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                AjoutAnimalWidget(),
+                                                InfosadoptionWidget(),
                                           ),
                                         );
                                       },
@@ -354,72 +355,99 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               return Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 color: Color(0xFFF5F5F5),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Image.network(
-                                            gridViewAnimalRecord.imageUrl,
-                                            width: 100,
-                                            height: 100,
-                                            fit: BoxFit.cover,
-                                          ),
+                                child: InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AnimalclickWidget(
+                                          detailanimaux:
+                                              gridViewAnimalRecord.reference,
                                         ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 8, 8, 8),
-                                      child: Row(
+                                      ),
+                                    );
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
                                         children: [
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    gridViewAnimalRecord.nom,
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1,
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    'refuge name',
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Overpass',
-                                                          fontSize: 12,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                          Expanded(
+                                            child: Image.network(
+                                              gridViewAnimalRecord.imageUrl,
+                                              width: 100,
+                                              height: 80,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            12, 12, 12, 8),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 4),
+                                                      child: Text(
+                                                        gridViewAnimalRecord
+                                                            .nom,
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      'refuge name',
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Overpass',
+                                                                fontSize: 12,
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
