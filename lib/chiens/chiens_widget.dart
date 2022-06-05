@@ -182,7 +182,7 @@ class _ChiensWidgetState extends State<ChiensWidget> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => AnimalclickWidget(
-                                    animalDetails:
+                                    detailanimaux:
                                         listViewAnimalRecord.reference,
                                   ),
                                 ),

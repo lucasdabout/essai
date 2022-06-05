@@ -115,8 +115,10 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'profilePage': ProfilePageWidget(),
       'homePage': HomePageWidget(),
+      'profilePage': ProfilePageWidget(),
+      'ajoutAnimal': AjoutAnimalWidget(),
+      'search': SearchWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -133,6 +135,18 @@ class _NavBarPageState extends State<NavBarPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
+              Icons.home_outlined,
+              size: 24,
+            ),
+            activeIcon: Icon(
+              Icons.home_rounded,
+              size: 24,
+            ),
+            label: ' Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.account_circle_outlined,
               size: 24,
             ),
@@ -145,14 +159,18 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.add,
               size: 24,
             ),
-            activeIcon: Icon(
-              Icons.home_rounded,
+            label: '',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
               size: 24,
             ),
-            label: ' Home',
+            label: '',
             tooltip: '',
           )
         ],

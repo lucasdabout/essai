@@ -104,7 +104,7 @@ class _$Espece2Record extends Espece2Record {
   final DocumentReference<Object> reference;
 
   factory _$Espece2Record([void Function(Espece2RecordBuilder) updates]) =>
-      (new Espece2RecordBuilder()..update(updates))._build();
+      (new Espece2RecordBuilder()..update(updates)).build();
 
   _$Espece2Record._({this.libelle, this.frais, this.animals, this.reference})
       : super._();
@@ -135,7 +135,7 @@ class _$Espece2Record extends Espece2Record {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'Espece2Record')
+    return (newBuiltValueToStringHelper('Espece2Record')
           ..add('libelle', libelle)
           ..add('frais', frais)
           ..add('animals', animals)
@@ -195,9 +195,7 @@ class Espece2RecordBuilder
   }
 
   @override
-  Espece2Record build() => _build();
-
-  _$Espece2Record _build() {
+  _$Espece2Record build() {
     _$Espece2Record _$result;
     try {
       _$result = _$v ??
@@ -213,7 +211,7 @@ class Espece2RecordBuilder
         _animals?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'Espece2Record', _$failedField, e.toString());
+            'Espece2Record', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -222,4 +220,4 @@ class Espece2RecordBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

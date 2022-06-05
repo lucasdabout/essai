@@ -162,7 +162,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => AnimalclickWidget(
-                                    animalDetails:
+                                    detailanimaux:
                                         listViewAnimalRecord.reference,
                                   ),
                                 ),

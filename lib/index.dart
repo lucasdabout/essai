@@ -9,3 +9,5 @@ export 'animalclick/animalclick_widget.dart' show AnimalclickWidget;
 export 'chat/chat_widget.dart' show ChatWidget;
 export 'refuge_details/refuge_details_widget.dart' show RefugeDetailsWidget;
 export 'ajout_animal/ajout_animal_widget.dart' show AjoutAnimalWidget;
+export 'search/search_widget.dart' show SearchWidget;
+export 'infosadoption/infosadoption_widget.dart' show InfosadoptionWidget;

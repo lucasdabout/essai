@@ -169,7 +169,7 @@ class _$RefugeRecord extends RefugeRecord {
   final DocumentReference<Object> reference;
 
   factory _$RefugeRecord([void Function(RefugeRecordBuilder) updates]) =>
-      (new RefugeRecordBuilder()..update(updates))._build();
+      (new RefugeRecordBuilder()..update(updates)).build();
 
   _$RefugeRecord._(
       {this.nom,
@@ -227,7 +227,7 @@ class _$RefugeRecord extends RefugeRecord {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'RefugeRecord')
+    return (newBuiltValueToStringHelper('RefugeRecord')
           ..add('nom', nom)
           ..add('localisation', localisation)
           ..add('numeroEtRue', numeroEtRue)
@@ -317,9 +317,7 @@ class RefugeRecordBuilder
   }
 
   @override
-  RefugeRecord build() => _build();
-
-  _$RefugeRecord _build() {
+  _$RefugeRecord build() {
     _$RefugeRecord _$result;
     try {
       _$result = _$v ??
@@ -340,7 +338,7 @@ class RefugeRecordBuilder
         _animals?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'RefugeRecord', _$failedField, e.toString());
+            'RefugeRecord', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -349,4 +347,4 @@ class RefugeRecordBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
