@@ -663,8 +663,46 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 24, 0, 24),
                                                 child: FFButtonWidget(
-                                                  onPressed: () {
-                                                    print('Button pressed ...');
+                                                  onPressed: () async {
+                                                    if (passwordCreateController
+                                                            ?.text !=
+                                                        passwordConfirmController
+                                                            ?.text) {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Passwords don\'t match!',
+                                                          ),
+                                                        ),
+                                                      );
+                                                      return;
+                                                    }
+
+                                                    final user =
+                                                        await createAccountWithEmail(
+                                                      context,
+                                                      emailAddressController
+                                                          .text,
+                                                      passwordCreateController
+                                                          .text,
+                                                    );
+                                                    if (user == null) {
+                                                      return;
+                                                    }
+
+                                                    await Navigator
+                                                        .pushAndRemoveUntil(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            NavBarPage(
+                                                                initialPage:
+                                                                    'homePage'),
+                                                      ),
+                                                      (r) => false,
+                                                    );
                                                   },
                                                   text: 'Créer un compte',
                                                   options: FFButtonOptions(
