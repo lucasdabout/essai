@@ -16,10 +16,43 @@ abstract class Race2Record implements Built<Race2Record, Race2RecordBuilder> {
   String get descriptif;
 
   @nullable
-  String get prerequis;
+  BuiltList<DocumentReference> get animaux;
 
   @nullable
-  BuiltList<DocumentReference> get animaux;
+  String get typePoil;
+
+  @nullable
+  String get origine;
+
+  @nullable
+  String get gabarit;
+
+  @nullable
+  String get formeTete;
+
+  @nullable
+  String get poidsFemelle;
+
+  @nullable
+  String get poidsMale;
+
+  @nullable
+  String get tailleFemelle;
+
+  @nullable
+  String get tailleMale;
+
+  @nullable
+  String get particularite;
+
+  @nullable
+  String get historiqueRace;
+
+  @nullable
+  String get comportement;
+
+  @nullable
+  String get imgRace;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -28,8 +61,19 @@ abstract class Race2Record implements Built<Race2Record, Race2RecordBuilder> {
   static void _initializeBuilder(Race2RecordBuilder builder) => builder
     ..libelle = ''
     ..descriptif = ''
-    ..prerequis = ''
-    ..animaux = ListBuilder();
+    ..animaux = ListBuilder()
+    ..typePoil = ''
+    ..origine = ''
+    ..gabarit = ''
+    ..formeTete = ''
+    ..poidsFemelle = ''
+    ..poidsMale = ''
+    ..tailleFemelle = ''
+    ..tailleMale = ''
+    ..particularite = ''
+    ..historiqueRace = ''
+    ..comportement = ''
+    ..imgRace = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('race2');
@@ -55,12 +99,34 @@ abstract class Race2Record implements Built<Race2Record, Race2RecordBuilder> {
 Map<String, dynamic> createRace2RecordData({
   String libelle,
   String descriptif,
-  String prerequis,
+  String typePoil,
+  String origine,
+  String gabarit,
+  String formeTete,
+  String poidsFemelle,
+  String poidsMale,
+  String tailleFemelle,
+  String tailleMale,
+  String particularite,
+  String historiqueRace,
+  String comportement,
+  String imgRace,
 }) =>
     serializers.toFirestore(
         Race2Record.serializer,
         Race2Record((r) => r
           ..libelle = libelle
           ..descriptif = descriptif
-          ..prerequis = prerequis
-          ..animaux = null));
+          ..animaux = null
+          ..typePoil = typePoil
+          ..origine = origine
+          ..gabarit = gabarit
+          ..formeTete = formeTete
+          ..poidsFemelle = poidsFemelle
+          ..poidsMale = poidsMale
+          ..tailleFemelle = tailleFemelle
+          ..tailleMale = tailleMale
+          ..particularite = particularite
+          ..historiqueRace = historiqueRace
+          ..comportement = comportement
+          ..imgRace = imgRace));

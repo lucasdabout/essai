@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../race_details/race_details_widget.dart';
+import '../refuge_details/refuge_details_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -112,9 +113,21 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
                             );
                           }
                           final textRefugeRecord = snapshot.data;
-                          return Text(
-                            textRefugeRecord.nom,
-                            style: FlutterFlowTheme.of(context).bodyText1,
+                          return InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RefugeDetailsWidget(
+                                    refugeDetails: textRefugeRecord.reference,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              textRefugeRecord.nom,
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
                           );
                         },
                       ),
@@ -215,13 +228,75 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
                     children: [
                       Expanded(
                         child: Text(
-                          '30m | High Intensity | Indoor/Outdoor',
+                          'Date de naissance : ${dateTimeFormat('d/M/y', animalclickAnimalRecord.dateNaissance)}',
                           style: FlutterFlowTheme.of(context)
                               .bodyText2
                               .override(
                                 fontFamily: 'Lexend Deca',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
+                                color: FlutterFlowTheme.of(context).textColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Sexe : ${animalclickAnimalRecord.sexe}',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Lexend Deca',
+                                color: FlutterFlowTheme.of(context).textColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Couleur : ${animalclickAnimalRecord.couleur}',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Lexend Deca',
+                                color: FlutterFlowTheme.of(context).textColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Frais : ${animalclickAnimalRecord.frais.toString()}€',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Lexend Deca',
+                                color: FlutterFlowTheme.of(context).textColor,
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
                               ),

@@ -26,8 +26,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   @override
   void initState() {
     super.initState();
-    textController =
-        TextEditingController(text: 'Qu\'est ce que vous rechercher ?');
+    textController = TextEditingController(text: 'Que recherchez-vous ?');
   }
 
   @override
@@ -118,7 +117,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   Align(
                                     alignment: AlignmentDirectional(0, -0.6),
                                     child: Text(
-                                      'faîte une bonne action',
+                                      'faites une bonne action',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
@@ -143,7 +142,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         );
                                       },
-                                      text: 'ADOPTER',
+                                      text: 'ADOPTEZ',
                                       options: FFButtonOptions(
                                         width: 130,
                                         height: 40,
@@ -205,6 +204,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       textAlign: TextAlign.start,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Overpass',
+                            color: FlutterFlowTheme.of(context).textColor,
                             fontSize: 16,
                           ),
                     ),
@@ -340,6 +340,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     'Les derniers ajoutés',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Overpass',
+                          color: FlutterFlowTheme.of(context).textColor,
                           fontSize: 16,
                         ),
                   ),
@@ -357,7 +358,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                       child: StreamBuilder<List<AnimalRecord>>(
-                        stream: queryAnimalRecord(),
+                        stream: queryAnimalRecord(
+                          limit: 4,
+                        ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -445,7 +448,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .fromSTEB(
                                                                   0, 0, 0, 4),
                                                       child: Text(
-                                                        '${gridViewAnimalRecord.nom} - ${gridViewAnimalRecord.frais.toString()}',
+                                                        '${gridViewAnimalRecord.nom} - ${gridViewAnimalRecord.frais.toString()}€',
                                                         textAlign:
                                                             TextAlign.start,
                                                         style:
@@ -503,6 +506,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     'Les animaux SOS',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Overpass',
+                          color: FlutterFlowTheme.of(context).textColor,
                           fontSize: 16,
                         ),
                   ),

@@ -14,9 +14,6 @@ abstract class RefugeRecord
   String get nom;
 
   @nullable
-  String get localisation;
-
-  @nullable
   String get numeroEtRue;
 
   @nullable
@@ -40,7 +37,6 @@ abstract class RefugeRecord
 
   static void _initializeBuilder(RefugeRecordBuilder builder) => builder
     ..nom = ''
-    ..localisation = ''
     ..numeroEtRue = ''
     ..codePostal = ''
     ..ville = ''
@@ -63,7 +59,6 @@ abstract class RefugeRecord
       RefugeRecord(
         (c) => c
           ..nom = snapshot.data['nom']
-          ..localisation = snapshot.data['localisation']
           ..numeroEtRue = snapshot.data['numeroEtRue']
           ..codePostal = snapshot.data['codePostal']
           ..ville = snapshot.data['ville']
@@ -101,7 +96,6 @@ abstract class RefugeRecord
 
 Map<String, dynamic> createRefugeRecordData({
   String nom,
-  String localisation,
   String numeroEtRue,
   String codePostal,
   String ville,
@@ -112,7 +106,6 @@ Map<String, dynamic> createRefugeRecordData({
         RefugeRecord.serializer,
         RefugeRecord((r) => r
           ..nom = nom
-          ..localisation = localisation
           ..numeroEtRue = numeroEtRue
           ..codePostal = codePostal
           ..ville = ville

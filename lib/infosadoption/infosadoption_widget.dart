@@ -1,3 +1,4 @@
+import '../animalclick/animalclick_widget.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -103,11 +104,25 @@ class _InfosadoptionWidgetState extends State<InfosadoptionWidget> {
                                   itemBuilder: (context, pageViewIndex) {
                                     final pageViewAnimalRecord =
                                         pageViewAnimalRecordList[pageViewIndex];
-                                    return Image.network(
-                                      pageViewAnimalRecord.imageUrl,
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      fit: BoxFit.cover,
+                                    return InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                AnimalclickWidget(
+                                              details: pageViewAnimalRecord
+                                                  .reference,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Image.network(
+                                        pageViewAnimalRecord.imageUrl,
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        fit: BoxFit.cover,
+                                      ),
                                     );
                                   },
                                 ),

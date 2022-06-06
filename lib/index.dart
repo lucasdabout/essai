@@ -11,3 +11,4 @@ export 'ajout_animal/ajout_animal_widget.dart' show AjoutAnimalWidget;
 export 'infosadoption/infosadoption_widget.dart' show InfosadoptionWidget;
 export 'listefavoris/listefavoris_widget.dart' show ListefavorisWidget;
 export 'chats/chats_widget.dart' show ChatsWidget;
+export 'refuge_details/refuge_details_widget.dart' show RefugeDetailsWidget;
