@@ -3,7 +3,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,7 +40,7 @@ class _ChiensWidgetState extends State<ChiensWidget> {
             child: SizedBox(
               width: 40,
               height: 40,
-              child: SpinKitWanderingCubes(
+              child: SpinKitCircle(
                 color: Color(0xFFFF395C),
                 size: 40,
               ),
@@ -53,15 +52,12 @@ class _ChiensWidgetState extends State<ChiensWidget> {
           key: scaffoldKey,
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            automaticallyImplyLeading: false,
-            title: InkWell(
-              onTap: () async {
-                Navigator.pop(context);
-              },
-              child: Text(
-                'Nos chiens',
-                style: FlutterFlowTheme.of(context).title1,
-              ),
+            iconTheme:
+                IconThemeData(color: FlutterFlowTheme.of(context).black600),
+            automaticallyImplyLeading: true,
+            title: Text(
+              'Nos chiens',
+              style: FlutterFlowTheme.of(context).title1,
             ),
             actions: [],
             centerTitle: false,
@@ -158,7 +154,7 @@ class _ChiensWidgetState extends State<ChiensWidget> {
                         child: SizedBox(
                           width: 40,
                           height: 40,
-                          child: SpinKitWanderingCubes(
+                          child: SpinKitCircle(
                             color: Color(0xFFFF395C),
                             size: 40,
                           ),
@@ -182,8 +178,9 @@ class _ChiensWidgetState extends State<ChiensWidget> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => AnimalclickWidget(
-                                    detailanimaux:
-                                        listViewAnimalRecord.reference,
+                                    details: listViewAnimalRecord.reference,
+                                    nomrefuge:
+                                        listViewAnimalRecord.refugeanimal,
                                   ),
                                 ),
                               );
@@ -197,7 +194,10 @@ class _ChiensWidgetState extends State<ChiensWidget> {
                                 image: DecorationImage(
                                   fit: BoxFit.fitWidth,
                                   image: Image.network(
-                                    listViewAnimalRecord.imageUrl,
+                                    valueOrDefault<String>(
+                                      listViewAnimalRecord.imageUrl,
+                                      'n/a',
+                                    ),
                                   ).image,
                                 ),
                                 boxShadow: [
@@ -255,8 +255,7 @@ class _ChiensWidgetState extends State<ChiensWidget> {
                                                     child: SizedBox(
                                                       width: 40,
                                                       height: 40,
-                                                      child:
-                                                          SpinKitWanderingCubes(
+                                                      child: SpinKitCircle(
                                                         color:
                                                             Color(0xFFFF395C),
                                                         size: 40,
@@ -279,37 +278,19 @@ class _ChiensWidgetState extends State<ChiensWidget> {
                                                         : null;
                                                 return ToggleIcon(
                                                   onPressed: () async {
-                                                    final favorisElement =
-                                                        toggleIconUsersRecord
-                                                            .reference;
-                                                    final favorisUpdate =
-                                                        toggleIconUsersRecord
-                                                                .favoris
-                                                                .toList()
-                                                                .contains(
-                                                                    favorisElement)
-                                                            ? FieldValue
-                                                                .arrayRemove([
-                                                                favorisElement
-                                                              ])
-                                                            : FieldValue
-                                                                .arrayUnion([
-                                                                favorisElement
-                                                              ]);
-                                                    final usersUpdateData = {
-                                                      'favoris': favorisUpdate,
-                                                    };
-                                                    await toggleIconUsersRecord
+                                                    final animalUpdateData =
+                                                        createAnimalRecordData(
+                                                      favoris:
+                                                          !listViewAnimalRecord
+                                                              .favoris,
+                                                    );
+                                                    await listViewAnimalRecord
                                                         .reference
                                                         .update(
-                                                            usersUpdateData);
+                                                            animalUpdateData);
                                                   },
-                                                  value: toggleIconUsersRecord
-                                                      .favoris
-                                                      .toList()
-                                                      .contains(
-                                                          toggleIconUsersRecord
-                                                              .reference),
+                                                  value: listViewAnimalRecord
+                                                      .favoris,
                                                   onIcon: Icon(
                                                     Icons.favorite,
                                                     color: FlutterFlowTheme.of(
@@ -333,25 +314,68 @@ class _ChiensWidgetState extends State<ChiensWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             16, 4, 16, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                'refuge name | couleur ',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyText2
-                                                    .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0xFF39D2C0),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
-                                              ),
-                                            ),
-                                          ],
+                                        child:
+                                            StreamBuilder<List<RefugeRecord>>(
+                                          stream: queryRefugeRecord(
+                                            queryBuilder: (refugeRecord) =>
+                                                refugeRecord.where('animaux',
+                                                    arrayContains:
+                                                        listViewAnimalRecord
+                                                            .reference),
+                                            singleRecord: true,
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 40,
+                                                  height: 40,
+                                                  child: SpinKitCircle(
+                                                    color: Color(0xFFFF395C),
+                                                    size: 40,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<RefugeRecord>
+                                                rowCategoriesRefugeRecordList =
+                                                snapshot.data;
+                                            // Return an empty Container when the document does not exist.
+                                            if (snapshot.data.isEmpty) {
+                                              return Container();
+                                            }
+                                            final rowCategoriesRefugeRecord =
+                                                rowCategoriesRefugeRecordList
+                                                        .isNotEmpty
+                                                    ? rowCategoriesRefugeRecordList
+                                                        .first
+                                                    : null;
+                                            return Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    rowCategoriesRefugeRecord
+                                                        .nom,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .white,
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          },
                                         ),
                                       ),
                                       Expanded(

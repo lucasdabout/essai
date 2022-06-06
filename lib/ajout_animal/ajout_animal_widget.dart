@@ -31,6 +31,7 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
   String dropDownValue2;
   TextEditingController textController4;
   TextEditingController textController5;
+  String dropDownValue3;
   bool switchListTileValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -96,7 +97,7 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
                       child: SizedBox(
                         width: 40,
                         height: 40,
-                        child: SpinKitWanderingCubes(
+                        child: SpinKitCircle(
                           color: Color(0xFFFF395C),
                           size: 40,
                         ),
@@ -239,7 +240,7 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
                                       child: SizedBox(
                                         width: 40,
                                         height: 40,
-                                        child: SpinKitWanderingCubes(
+                                        child: SpinKitCircle(
                                           color: Color(0xFFFF395C),
                                           size: 40,
                                         ),
@@ -291,7 +292,7 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
                                         child: SizedBox(
                                           width: 40,
                                           height: 40,
-                                          child: SpinKitWanderingCubes(
+                                          child: SpinKitCircle(
                                             color: Color(0xFFFF395C),
                                             size: 40,
                                           ),
@@ -301,6 +302,8 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
                                     List<Race2Record> dropDownRace2RecordList =
                                         snapshot.data;
                                     return FlutterFlowDropDown(
+                                      initialOption: dropDownValue2 ??=
+                                          'Race...',
                                       options: dropDownRace2RecordList
                                           .map((e) => e.libelle)
                                           .toList()
@@ -396,7 +399,6 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Date de naissance',
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
@@ -415,6 +417,7 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
+                                  keyboardType: TextInputType.datetime,
                                 ),
                               ),
                             ),
@@ -503,6 +506,56 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
                             ),
                           ],
                         ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            StreamBuilder<List<RefugeRecord>>(
+                              stream: queryRefugeRecord(),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 40,
+                                      height: 40,
+                                      child: SpinKitCircle(
+                                        color: Color(0xFFFF395C),
+                                        size: 40,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<RefugeRecord> dropDownRefugeRecordList =
+                                    snapshot.data;
+                                return FlutterFlowDropDown(
+                                  options: dropDownRefugeRecordList
+                                      .map((e) => e.nom)
+                                      .toList()
+                                      .toList(),
+                                  onChanged: (val) =>
+                                      setState(() => dropDownValue3 = val),
+                                  width: 180,
+                                  height: 50,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Overpass',
+                                        color: Colors.black,
+                                      ),
+                                  hintText: 'Refuge...',
+                                  fillColor: Colors.white,
+                                  elevation: 2,
+                                  borderColor: Colors.transparent,
+                                  borderWidth: 0,
+                                  borderRadius: 0,
+                                  margin: EdgeInsetsDirectional.fromSTEB(
+                                      12, 4, 12, 4),
+                                  hidesUnderline: true,
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                         SwitchListTile(
                           value: switchListTileValue ??= false,
                           onChanged: (newValue) =>
@@ -517,42 +570,74 @@ class _AjoutAnimalWidgetState extends State<AjoutAnimalWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              final animalCreateData = createAnimalRecordData(
-                                imageUrl: uploadedFileUrl,
-                                nom: textController1.text,
-                                dateNaissance: datePicked,
-                                sexe: textController4.text,
-                                description: textController5.text,
-                                couleur: textController2.text,
-                                sos: switchListTileValue,
-                                libelleEspece: dropDownValue1,
-                              );
-                              await AnimalRecord.collection
-                                  .doc()
-                                  .set(animalCreateData);
-                            },
-                            text: 'Ajouter l\'animal',
-                            options: FFButtonOptions(
-                              width: 270,
-                              height: 50,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                              elevation: 3,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 8,
+                          child: StreamBuilder<List<Race2Record>>(
+                            stream: queryRace2Record(
+                              singleRecord: true,
                             ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 40,
+                                    height: 40,
+                                    child: SpinKitCircle(
+                                      color: Color(0xFFFF395C),
+                                      size: 40,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<Race2Record> buttonRace2RecordList =
+                                  snapshot.data;
+                              // Return an empty Container when the document does not exist.
+                              if (snapshot.data.isEmpty) {
+                                return Container();
+                              }
+                              final buttonRace2Record =
+                                  buttonRace2RecordList.isNotEmpty
+                                      ? buttonRace2RecordList.first
+                                      : null;
+                              return FFButtonWidget(
+                                onPressed: () async {
+                                  final animalCreateData =
+                                      createAnimalRecordData(
+                                    imageUrl: uploadedFileUrl,
+                                    nom: textController1.text,
+                                    dateNaissance: datePicked,
+                                    sexe: textController4.text,
+                                    description: textController5.text,
+                                    couleur: textController2.text,
+                                    sos: switchListTileValue,
+                                    libelleEspece: dropDownValue1,
+                                  );
+                                  await AnimalRecord.collection
+                                      .doc()
+                                      .set(animalCreateData);
+                                },
+                                text: 'Ajouter l\'animal',
+                                options: FFButtonOptions(
+                                  width: 270,
+                                  height: 50,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                  elevation: 3,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 8,
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ],

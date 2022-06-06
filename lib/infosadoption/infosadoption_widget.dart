@@ -76,7 +76,7 @@ class _InfosadoptionWidgetState extends State<InfosadoptionWidget> {
                                 child: SizedBox(
                                   width: 40,
                                   height: 40,
-                                  child: SpinKitWanderingCubes(
+                                  child: SpinKitCircle(
                                     color: Color(0xFFFF395C),
                                     size: 40,
                                   ),

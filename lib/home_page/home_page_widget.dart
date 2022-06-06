@@ -1,11 +1,12 @@
 import '../animalclick/animalclick_widget.dart';
 import '../backend/backend.dart';
-import '../chat/chat_widget.dart';
+import '../chats/chats_widget.dart';
 import '../chiens/chiens_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../infosadoption/infosadoption_widget.dart';
+import '../listefavoris/listefavoris_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -218,73 +219,109 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                            child: InkWell(
-                              onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ChiensWidget(),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: 60,
-                                height: 60,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.asset(
-                                  'assets/images/dog.png',
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                              child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ChatWidget(),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ChiensWidget(),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 60,
+                                    height: 60,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
                                     ),
-                                  );
-                                },
-                                child: Container(
-                                  width: 60,
-                                  height: 60,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/cat.png',
-                                    fit: BoxFit.cover,
+                                    child: Image.asset(
+                                      'assets/images/dog.png',
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
-                              ),
+                                Text(
+                                  'Chiens',
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ),
+                              ],
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/tlchargement.png',
-                              ),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ChatsWidget(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 60,
+                                      height: 60,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        'assets/images/cat.png',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  'Chats',
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ListefavorisWidget(),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 60,
+                                    height: 60,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/Sans_titre_(3).png',
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  'Favoris',
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -328,7 +365,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               child: SizedBox(
                                 width: 40,
                                 height: 40,
-                                child: SpinKitWanderingCubes(
+                                child: SpinKitCircle(
                                   color: Color(0xFFFF395C),
                                   size: 40,
                                 ),
@@ -352,21 +389,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             itemBuilder: (context, gridViewIndex) {
                               final gridViewAnimalRecord =
                                   gridViewAnimalRecordList[gridViewIndex];
-                              return Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Color(0xFFF5F5F5),
-                                child: InkWell(
-                                  onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => AnimalclickWidget(
-                                          detailanimaux:
-                                              gridViewAnimalRecord.reference,
-                                        ),
+                              return InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AnimalclickWidget(
+                                        details: gridViewAnimalRecord.reference,
                                       ),
-                                    );
-                                  },
+                                    ),
+                                  );
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Color(0xFFF5F5F5),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -409,8 +445,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .fromSTEB(
                                                                   0, 0, 0, 4),
                                                       child: Text(
-                                                        gridViewAnimalRecord
-                                                            .nom,
+                                                        '${gridViewAnimalRecord.nom} - ${gridViewAnimalRecord.frais.toString()}',
                                                         textAlign:
                                                             TextAlign.start,
                                                         style:
@@ -426,7 +461,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      'refuge name',
+                                                      gridViewAnimalRecord.sexe,
                                                       textAlign:
                                                           TextAlign.start,
                                                       style:
@@ -494,7 +529,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: SizedBox(
                               width: 40,
                               height: 40,
-                              child: SpinKitWanderingCubes(
+                              child: SpinKitCircle(
                                 color: Color(0xFFFF395C),
                                 size: 40,
                               ),

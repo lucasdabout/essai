@@ -37,7 +37,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
             child: SizedBox(
               width: 40,
               height: 40,
-              child: SpinKitWanderingCubes(
+              child: SpinKitCircle(
                 color: Color(0xFFFF395C),
                 size: 40,
               ),
@@ -147,7 +147,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 child: SizedBox(
                                   width: 40,
                                   height: 40,
-                                  child: SpinKitWanderingCubes(
+                                  child: SpinKitCircle(
                                     color: Color(0xFFFF395C),
                                     size: 40,
                                   ),
@@ -193,12 +193,11 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             await signOut();
-                            await Navigator.pushAndRemoveUntil(
+                            await Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => LoginPageWidget(),
                               ),
-                              (r) => false,
                             );
                           },
                           text: 'DÉCONNEXION',

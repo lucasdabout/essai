@@ -19,13 +19,17 @@ abstract class Race2Record implements Built<Race2Record, Race2RecordBuilder> {
   String get prerequis;
 
   @nullable
+  BuiltList<DocumentReference> get animaux;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(Race2RecordBuilder builder) => builder
     ..libelle = ''
     ..descriptif = ''
-    ..prerequis = '';
+    ..prerequis = ''
+    ..animaux = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('race2');
@@ -58,4 +62,5 @@ Map<String, dynamic> createRace2RecordData({
         Race2Record((r) => r
           ..libelle = libelle
           ..descriptif = descriptif
-          ..prerequis = prerequis));
+          ..prerequis = prerequis
+          ..animaux = null));

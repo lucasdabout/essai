@@ -76,13 +76,12 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
-          ? Center(
-              child: SizedBox(
-                width: 40,
-                height: 40,
-                child: SpinKitWanderingCubes(
-                  color: Color(0xFFFF395C),
-                  size: 40,
+          ? Container(
+              color: Colors.transparent,
+              child: Builder(
+                builder: (context) => Image.asset(
+                  'assets/images/Trouvez_votre_animal__4_pattes_(1).png',
+                  fit: BoxFit.cover,
                 ),
               ),
             )
@@ -116,9 +115,8 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'homePage': HomePageWidget(),
-      'profilePage': ProfilePageWidget(),
       'ajoutAnimal': AjoutAnimalWidget(),
-      'search': SearchWidget(),
+      'profilePage': ProfilePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -126,9 +124,9 @@ class _NavBarPageState extends State<NavBarPage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        backgroundColor: FlutterFlowTheme.of(context).darkBackground,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: FlutterFlowTheme.of(context).grayLines,
+        backgroundColor: Color(0xFFF1F4F8),
+        selectedItemColor: Color(0xFFFF395C),
+        unselectedItemColor: FlutterFlowTheme.of(context).textColor,
         showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
@@ -147,18 +145,6 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.account_circle_outlined,
-              size: 24,
-            ),
-            activeIcon: Icon(
-              Icons.account_circle_rounded,
-              size: 24,
-            ),
-            label: 'Profile',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.add,
               size: 24,
             ),
@@ -167,10 +153,14 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.search,
+              Icons.account_circle_outlined,
               size: 24,
             ),
-            label: '',
+            activeIcon: Icon(
+              Icons.account_circle_rounded,
+              size: 24,
+            ),
+            label: 'Profile',
             tooltip: '',
           )
         ],

@@ -1,6 +1,8 @@
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../race_details/race_details_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -9,10 +11,12 @@ import 'package:google_fonts/google_fonts.dart';
 class AnimalclickWidget extends StatefulWidget {
   const AnimalclickWidget({
     Key key,
-    this.detailanimaux,
+    this.details,
+    this.nomrefuge,
   }) : super(key: key);
 
-  final DocumentReference detailanimaux;
+  final DocumentReference details;
+  final DocumentReference nomrefuge;
 
   @override
   _AnimalclickWidgetState createState() => _AnimalclickWidgetState();
@@ -24,7 +28,7 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<AnimalRecord>(
-      stream: AnimalRecord.getDocument(widget.detailanimaux),
+      stream: AnimalRecord.getDocument(widget.details),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -32,7 +36,7 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
             child: SizedBox(
               width: 40,
               height: 40,
-              child: SpinKitWanderingCubes(
+              child: SpinKitCircle(
                 color: Color(0xFFFF395C),
                 size: 40,
               ),
@@ -100,7 +104,7 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
                               child: SizedBox(
                                 width: 40,
                                 height: 40,
-                                child: SpinKitWanderingCubes(
+                                child: SpinKitCircle(
                                   color: Color(0xFFFF395C),
                                   size: 40,
                                 ),
@@ -114,6 +118,26 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
                           );
                         },
                       ),
+                      ToggleIcon(
+                        onPressed: () async {
+                          final animalUpdateData = createAnimalRecordData(
+                            favoris: !animalclickAnimalRecord.favoris,
+                          );
+                          await animalclickAnimalRecord.reference
+                              .update(animalUpdateData);
+                        },
+                        value: animalclickAnimalRecord.favoris,
+                        onIcon: Icon(
+                          Icons.favorite,
+                          color: Color(0xFFFF395C),
+                          size: 25,
+                        ),
+                        offIcon: Icon(
+                          Icons.favorite_border_sharp,
+                          color: Colors.black,
+                          size: 25,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -123,18 +147,48 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: Text(
-                          dateTimeFormat(
-                              'd/M/y', animalclickAnimalRecord.dateNaissance),
-                          style: FlutterFlowTheme.of(context)
-                              .subtitle2
-                              .override(
-                                fontFamily: 'Lexend Deca',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                        child: StreamBuilder<Race2Record>(
+                          stream: Race2Record.getDocument(
+                              animalclickAnimalRecord.race),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 40,
+                                  height: 40,
+                                  child: SpinKitCircle(
+                                    color: Color(0xFFFF395C),
+                                    size: 40,
+                                  ),
+                                ),
+                              );
+                            }
+                            final textRace2Record = snapshot.data;
+                            return InkWell(
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RaceDetailsWidget(
+                                      racedetails: textRace2Record.reference,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                textRace2Record.libelle,
+                                style: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFFFF395C),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                               ),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -161,7 +215,7 @@ class _AnimalclickWidgetState extends State<AnimalclickWidget> {
                     children: [
                       Expanded(
                         child: Text(
-                          '${animalclickAnimalRecord.couleur} - ${animalclickAnimalRecord.sexe} - ${animalclickAnimalRecord.frais.toString()}',
+                          '30m | High Intensity | Indoor/Outdoor',
                           style: FlutterFlowTheme.of(context)
                               .bodyText2
                               .override(
