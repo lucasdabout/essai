@@ -359,8 +359,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                       child: StreamBuilder<List<AnimalRecord>>(
                         stream: queryAnimalRecord(
-                          queryBuilder: (animalRecord) =>
-                              animalRecord.where('sos', isNotEqualTo: true),
                           limit: 4,
                         ),
                         builder: (context, snapshot) {
@@ -420,8 +418,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           Expanded(
                                             child: Image.network(
                                               gridViewAnimalRecord.imageUrl,
-                                              width: 100,
-                                              height: 80,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 90,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -523,128 +523,147 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
-                    child: StreamBuilder<List<AnimalRecord>>(
-                      stream: queryAnimalRecord(
-                        queryBuilder: (animalRecord) =>
-                            animalRecord.where('sos', isEqualTo: true),
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: SpinKitCircle(
-                                color: Color(0xFFFF395C),
-                                size: 40,
-                              ),
-                            ),
-                          );
-                        }
-                        List<AnimalRecord> gridViewAnimalRecordList =
-                            snapshot.data;
-                        return GridView.builder(
-                          padding: EdgeInsets.zero,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 1,
-                          ),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: gridViewAnimalRecordList.length,
-                          itemBuilder: (context, gridViewIndex) {
-                            final gridViewAnimalRecord =
-                                gridViewAnimalRecordList[gridViewIndex];
-                            return InkWell(
-                              onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => AnimalclickWidget(
-                                      details: gridViewAnimalRecord.reference,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Color(0xFFF5F5F5),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Image.network(
-                                            gridViewAnimalRecord.imageUrl,
-                                            width: 100,
-                                            height: 100,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 8, 8, 8),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    'animal name',
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1,
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    'refuge name',
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Overpass',
-                                                          fontSize: 12,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                      child: StreamBuilder<List<AnimalRecord>>(
+                        stream: queryAnimalRecord(
+                          queryBuilder: (animalRecord) =>
+                              animalRecord.where('sos', isEqualTo: true),
+                          limit: 4,
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 40,
+                                height: 40,
+                                child: SpinKitCircle(
+                                  color: Color(0xFFFF395C),
+                                  size: 40,
                                 ),
                               ),
                             );
-                          },
-                        );
-                      },
+                          }
+                          List<AnimalRecord> gridViewAnimalRecordList =
+                              snapshot.data;
+                          return GridView.builder(
+                            padding: EdgeInsets.zero,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 1,
+                            ),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: gridViewAnimalRecordList.length,
+                            itemBuilder: (context, gridViewIndex) {
+                              final gridViewAnimalRecord =
+                                  gridViewAnimalRecordList[gridViewIndex];
+                              return InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AnimalclickWidget(
+                                        details: gridViewAnimalRecord.reference,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Color(0xFFF5F5F5),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Image.network(
+                                              gridViewAnimalRecord.imageUrl,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 90,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            12, 12, 12, 8),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 4),
+                                                      child: Text(
+                                                        '${gridViewAnimalRecord.nom} - ${gridViewAnimalRecord.frais.toString()}€',
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      gridViewAnimalRecord.sexe,
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Overpass',
+                                                                fontSize: 12,
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
